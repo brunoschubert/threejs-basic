@@ -17,10 +17,15 @@
   </head>
 
   <body>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r79/three.min.js"></script>
-    <script src="http://mamboleoo.be/learnThree/demos/OBJLoader.js"></script>
+    <script src="http://threejs.org/build/three.min.js"></script>
+    <script src="http://threejs.org/examples/js/loaders/MTLLoader.js"></script>
+    <script src="http://threejs.org/examples/js/loaders/OBJLoader.js"></script>
     <script src="colladaLoader.js"></script>
     <script>
+      //-------------------------------------
+      var model = "models/vaca.obj";
+      var material = "models/vaca.mtl";
+      //-------------------------------------
       var container;
       var camera, scene, renderer;
       var mouseX = 0,
@@ -46,60 +51,43 @@
         // scene
         scene = new THREE.Scene();
 
-        var ambient = new THREE.AmbientLight(0xbbbbbb);
+        var ambient = new THREE.AmbientLight(0xffffff);
         scene.add(ambient);
 
-        var directionalLight = new THREE.DirectionalLight(0xdddddd);
-        directionalLight.position.set(0, 0, 1);
-        scene.add(directionalLight);
+        // var directionalLight = new THREE.DirectionalLight(0xdddddd);
+        // directionalLight.position.set(0, 0, 1);
+        // scene.add(directionalLight);
 
-        //--------------------------------------------------------------------------------------------
-        // texture
-        var manager = new THREE.LoadingManager();
-        manager.onProgress = function(item, loaded, total) {
-          console.log(item, loaded, total);
-        };
-
-        var texture = new THREE.Texture();
-
+        // model
         var onProgress = function(xhr) {
           if (xhr.lengthComputable) {
             var percentComplete = (xhr.loaded / xhr.total) * 100;
             console.log(Math.round(percentComplete, 2) + "% downloaded");
           }
         };
-
-        var onError = function(xhr) {};
-
-        var loader = new THREE.ImageLoader(manager);
-        loader.load("models/bulbasaur.jpg" /*"models/vaca.png"*/, function(
-          image
-        ) {
-          texture.image = image;
-          texture.needsUpdate = true;
-        });
-
-        // model
-        var loader = new THREE.OBJLoader(manager);
-        loader.load(
-          "models/bulbasaur.obj" /*"models/vaca.obj"*/,
-          function(object) {
-            object.traverse(function(child) {
-              if (child instanceof THREE.Mesh) {
-                child.material.map = texture;
-              }
-            });
-
-            object.scale.x = 45;
-            object.scale.y = 45;
-            object.scale.z = 45;
-            object.rotation.y = 3;
-            object.position.y = -10.5;
-            scene.add(object);
-          },
-          onProgress,
-          onError
-        );
+        var onError = function() {};
+        new THREE.MTLLoader()
+          /*.setPath("models/out/2/")*/
+          .load(material, function(materials) {
+            materials.preload();
+            new THREE.OBJLoader()
+              .setMaterials(materials)
+              /*.setPath("models/out/2/")*/
+              .load(
+                model,
+                function(object) {
+                  object.scale.x = 20;
+                  object.scale.y = 20;
+                  object.scale.z = 20;
+                  object.rotation.y = 3;
+                  object.position.y = -10.5;
+                  scene.add(object);
+                },
+                onProgress,
+                onError
+              );
+          });
+        //
 
         renderer = new THREE.WebGLRenderer({ alpha: true });
         renderer.setPixelRatio(window.devicePixelRatio);

@@ -1,4 +1,4 @@
-var container, stats, controls;
+var container, controls;
 var camera, scene, renderer, light;
 
 var clock = new THREE.Clock();
@@ -18,7 +18,11 @@ function init() {
     1,
     2000
   );
-  camera.position.set(0, 100, 400);
+  camera.position.set(100, 200, 300);
+
+  controls = new THREE.OrbitControls(camera);
+  controls.target.set(0, 100, 0);
+  controls.update();
 
   scene = new THREE.Scene();
   scene.background = new THREE.Color(0xa0a0a0);
@@ -86,7 +90,6 @@ function onWindowResize() {
 }
 
 //
-
 function animate() {
   requestAnimationFrame(animate);
 

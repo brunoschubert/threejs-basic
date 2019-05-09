@@ -1,0 +1,11 @@
+body {
+  background: #c9de96;
+  background: radial-gradient(
+    ellipse at center,
+    #c9de96 0%,
+    #8ab66b 44%,
+    #398235 100%
+  );
+  margin: 0px;
+  overflow: hidden;
+}

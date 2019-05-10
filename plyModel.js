@@ -51,76 +51,13 @@ function init() {
 
   // PLY file
   var loader = new THREE.PLYLoader();
-  loader.load("models/ply/blade.ply", function(geometry) {
+  loader.load("models/ply/happy_vrip.ply", function(geometry) {
     geometry.computeVertexNormals();
 
-    var material = new THREE.MeshStandardMaterial({});
+    var material = new THREE.MeshNormalMaterial({});
     var mesh = new THREE.Mesh(geometry, material);
 
-    mesh.position.x = 100;
-    mesh.position.y = 150;
-    mesh.position.z = -10;
-    mesh.scale.multiplyScalar(0.25);
-
-    scene.add(mesh);
-  });
-
-  // PLY file
-  var loader = new THREE.PLYLoader();
-  loader.load("models/ply/blade.ply", function(geometry) {
-    geometry.computeVertexNormals();
-
-    var material = new THREE.MeshStandardMaterial({});
-    var mesh = new THREE.Mesh(geometry, material);
-
-    mesh.position.x = 100;
-    mesh.position.y = 150;
-    mesh.position.z = -10;
-    mesh.scale.multiplyScalar(0.25);
-
-    scene.add(mesh);
-  });
-
-  var loader = new THREE.PLYLoader();
-  loader.load("models/ply/blade.ply", function(geometry) {
-    geometry.computeVertexNormals();
-
-    var material = new THREE.MeshStandardMaterial({});
-    var mesh = new THREE.Mesh(geometry, material);
-
-    mesh.position.x = 200;
-    mesh.position.y = 150;
-    mesh.position.z = -25;
-    mesh.scale.multiplyScalar(0.25);
-
-    scene.add(mesh);
-  });
-
-  var loader = new THREE.PLYLoader();
-  loader.load("models/ply/blade.ply", function(geometry) {
-    geometry.computeVertexNormals();
-
-    var material = new THREE.MeshStandardMaterial({});
-    var mesh = new THREE.Mesh(geometry, material);
-
-    mesh.position.x = 0;
-    mesh.position.y = 150;
-    mesh.position.z = -25;
-    mesh.scale.multiplyScalar(0.25);
-
-    scene.add(mesh);
-  });
-
-  var loader = new THREE.PLYLoader();
-  loader.load("models/ply/dragon.ply", function(geometry) {
-    geometry.computeVertexNormals();
-
-    var material = new THREE.MeshStandardMaterial({});
-    var mesh = new THREE.Mesh(geometry, material);
-
-    mesh.position.x = 30;
     mesh.position.y = -50;
-    mesh.position.z = -10;
     mesh.scale.multiplyScalar(1000);
 
     scene.add(mesh);

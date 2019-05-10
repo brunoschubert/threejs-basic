@@ -99,7 +99,66 @@ function init() {
     object.position.x = 200;
     scene.add(object);
   });
+  // model
+  var loader = new THREE.FBXLoader();
+  loader.load("models/fbx/suzane_2kk.fbx", function(object) {
+    // mixer = new THREE.AnimationMixer(object);
 
+    // var action = mixer.clipAction(object.animations[0]);
+    // action.play();
+    object.rotateZ(THREE.Math.degToRad(180));
+    object.position.x = -100;
+    object.position.y = 150;
+    scene.add(object);
+  });
+  // model
+  var loader = new THREE.FBXLoader();
+  loader.load("models/fbx/suzane_2kk.fbx", function(object) {
+    // mixer = new THREE.AnimationMixer(object);
+
+    // var action = mixer.clipAction(object.animations[0]);
+    // action.play();
+    object.rotateZ(THREE.Math.degToRad(180));
+    object.position.x = 0;
+    object.position.y = 150;
+    scene.add(object);
+  });
+  // model
+  var loader = new THREE.FBXLoader();
+  loader.load("models/fbx/suzane_2kk.fbx", function(object) {
+    // mixer = new THREE.AnimationMixer(object);
+
+    // var action = mixer.clipAction(object.animations[0]);
+    // action.play();
+    object.rotateZ(THREE.Math.degToRad(180));
+    object.position.x = 100;
+    object.position.y = 150;
+    scene.add(object);
+  });
+  // model
+  var loader = new THREE.FBXLoader();
+  loader.load("models/fbx/suzane_2kk.fbx", function(object) {
+    // mixer = new THREE.AnimationMixer(object);
+
+    // var action = mixer.clipAction(object.animations[0]);
+    // action.play();
+    object.rotateZ(THREE.Math.degToRad(180));
+    object.position.x = 200;
+    object.position.y = 150;
+    scene.add(object);
+  });
+  // model
+  var loader = new THREE.FBXLoader();
+  loader.load("models/fbx/suzane_2kk.fbx", function(object) {
+    // mixer = new THREE.AnimationMixer(object);
+
+    // var action = mixer.clipAction(object.animations[0]);
+    // action.play();
+    object.rotateZ(THREE.Math.degToRad(180));
+    object.position.x = -200;
+    object.position.y = 150;
+    scene.add(object);
+  });
   renderer = new THREE.WebGLRenderer({ antialias: true });
   renderer.setPixelRatio(window.devicePixelRatio);
   renderer.setSize(window.innerWidth, window.innerHeight);

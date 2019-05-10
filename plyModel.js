@@ -18,7 +18,7 @@ function init() {
     1,
     2000
   );
-  camera.position.set(100, 100, 500);
+  camera.position.set(100, 100, 400);
 
   controls = new THREE.OrbitControls(camera);
   controls.target.set(0, 100, 0);

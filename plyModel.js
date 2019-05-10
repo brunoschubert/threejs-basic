@@ -1,5 +1,7 @@
 var container, controls;
 var camera, scene, renderer, light;
+var cube;
+var rotationSpeed = 0.01;
 
 var clock = new THREE.Clock();
 
@@ -33,7 +35,7 @@ function init() {
   scene.add(light);
 
   light = new THREE.DirectionalLight(0xffffff);
-  light.position.set(0, 200, 100);
+  light.position.set(0, 300, 100);
   scene.add(light);
 
   // ground
@@ -55,6 +57,7 @@ function init() {
     geometry.computeVertexNormals();
 
     var material = new THREE.MeshNormalMaterial({});
+    material.wireframe = true;
     var mesh = new THREE.Mesh(geometry, material);
 
     mesh.position.y = -50;
@@ -62,6 +65,18 @@ function init() {
 
     scene.add(mesh);
   });
+
+  //SIMPLE CUBE
+  var geometry = new THREE.BoxGeometry(1, 1, 1);
+  var material = new THREE.MeshNormalMaterial({});
+  //material.wireframe = true;
+  cube = new THREE.Mesh(geometry, material);
+
+  cube.position.x = 4;
+  cube.position.y = 215;
+  cube.position.z = -18;
+  cube.scale.multiplyScalar(20);
+  scene.add(cube);
 
   renderer = new THREE.WebGLRenderer({ antialias: true });
   renderer.setPixelRatio(window.devicePixelRatio);
@@ -78,11 +93,17 @@ function onWindowResize() {
   renderer.setSize(window.innerWidth, window.innerHeight);
 }
 
-//
+function rotateCube() {
+  cube.rotation.x -= rotationSpeed * 2;
+  cube.rotation.y -= rotationSpeed;
+  cube.rotation.z -= rotationSpeed * 3;
+}
+
 function animate() {
   requestAnimationFrame(animate);
 
   var delta = clock.getDelta();
+  rotateCube();
 
   if (mixer) mixer.update(delta);
 
